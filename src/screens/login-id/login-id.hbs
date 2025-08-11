@@ -1,0 +1,79 @@
+{{! Content container - for layout adjustment only }}
+<div class="max-w-2xl mx-auto">
+  {{! Content holder - for visual styling only }}
+  <div class="bg-white rounded-xl shadow-lg border border-gray-100">
+    {{! Title section }}
+    <header class="p-8 pb-4">
+      <h1 class="text-2xl font-bold text-center text-gray-900">
+        {{screen.texts.title}}
+      </h1>
+    </header>
+    
+    {{! Error messages section }}
+    {{> shared/error-messages}}
+    
+    {{! Form content }}
+    <form id="loginForm" class="p-8" role="form">
+      <fieldset class="flex flex-col gap-y-6">
+        {{! Email input field }}
+        {{> shared/input-field 
+          id="loginEmail"
+          name="email"
+          type="email"
+          label=screen.texts.emailPlaceholder
+          autocomplete="username webauthn"
+          required=true
+          autofocus=true
+          value=untrustedData.authorizationParams.login_hint
+          placeholder=screen.texts.emailPlaceholder
+        }}
+
+        {{! Submit button }}
+        <button
+          type="submit"
+          id="btnlogin"
+          class="w-full py-3 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-lg"
+        >
+          {{screen.texts.buttonText}}
+        </button>
+
+        {{! Password reset link - only displayed when forgotPasswordEnabled is true }}
+        {{#if forgotPasswordEnabled}}
+        <div class="text-center">
+          <a href="{{screen.resetPasswordLink}}" id="goToForgotPassword" class="text-lg text-indigo-600 hover:text-indigo-500">
+            {{screen.texts.forgotPasswordText}}
+          </a>
+        </div>
+        {{/if}}
+      </fieldset>
+    </form>
+    
+    {{! Social login section }}
+    {{> shared/social-login-buttons}}
+    
+    {{! Passkey section }}
+    <section id="passkeyContainer" class="px-8 pb-4 hidden">
+      <button
+        type="button"
+        id="btnPasskey"
+        class="w-full flex justify-center items-center gap-x-3 py-3 px-4 border border-gray-300 rounded-lg text-lg font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 14C5.9 14 5 13.1 5 12C5 10.9 5.9 10 7 10C8.1 10 9 10.9 9 12C9 13.1 8.1 14 7 14ZM12.6 10C11.8 7.7 9.6 6 7 6C3.7 6 1 8.7 1 12C1 15.3 3.7 18 7 18C9.6 18 11.8 16.3 12.6 14H16V18H20V14H23V10H12.6Z"/>
+        </svg>
+        <span>{{screen.texts.passkeyButtonText}}</span>
+      </button>
+    </section>
+
+    {{! Footer navigation }}
+    <footer class="p-8 pt-4 border-t border-gray-100">
+      {{#if signupEnabled}}
+      <nav class="text-center">
+        <a href="{{screen.signupLink}}" id="goToSignup" class="text-lg text-indigo-600 hover:text-indigo-500">
+          {{screen.texts.signupActionText}}
+        </a>
+      </nav>
+      {{/if}}
+    </footer>
+  </div>
+</div>

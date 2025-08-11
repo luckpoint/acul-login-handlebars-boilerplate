@@ -1,0 +1,31 @@
+{{! 
+  Input Field Component - Reusable input field with label
+  
+  Required properties:
+  - id: unique identifier for the input field
+  - name: form field name
+  - type: input type (email, text, tel, etc.)
+  - label: label text to display
+  
+  Optional properties:
+  - placeholder: placeholder text
+  - autocomplete: autocomplete attribute value
+  - required: whether the field is required (defaults to false)
+  - autofocus: whether to autofocus this field (defaults to false)
+  - value: initial value for the field
+  - cssClass: additional CSS classes for the input (defaults to standard styling)
+}}
+<div class="flex flex-col gap-y-2">
+  <label for="{{id}}" class="block text-lg font-medium text-gray-700">{{label}}</label>
+  <input
+    id="{{id}}"
+    name="{{name}}"
+    type="{{type}}"
+    {{#if autocomplete}}autocomplete="{{autocomplete}}"{{/if}}
+    {{#if required}}required{{/if}}
+    {{#if autofocus}}autofocus{{/if}}
+    {{#if value}}value="{{value}}"{{/if}}
+    class="{{#if cssClass}}{{cssClass}}{{else}}w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500{{/if}}"
+    {{#if placeholder}}placeholder="{{placeholder}}"{{/if}}
+  />
+</div>

@@ -1,0 +1,55 @@
+{{! Content container - for layout adjustment only }}
+<div class="max-w-2xl mx-auto">
+  {{! Main content card }}
+  <div class="bg-white rounded-xl shadow-lg border border-gray-100">
+    {{! Title section }}
+    <header class="p-8 pb-4">
+      <h1 class="text-2xl font-bold text-center text-gray-900">
+        {{screen.texts.title}}
+      </h1>
+    </header>
+    
+    {{! Error messages section }}
+    {{> shared/error-messages}}
+    
+    {{! Form content }}
+    <form id="signupForm" class="p-8" role="form">
+      {{! Field group }}
+      <fieldset class="flex flex-col gap-y-6">
+        {{! Dynamic identifier fields }}
+        {{#each identifierFields}}
+        {{> shared/input-field 
+          id=this.id
+          name=this.name
+          type=this.inputType
+          label=this.label
+          autocomplete=this.autocomplete
+          required=true
+          placeholder=this.placeholder
+        }}
+        {{/each}}
+
+        {{! Submit button }}
+        <button
+          type="submit"
+          id="btnContinue"
+          class="w-full py-3 px-6 text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-lg"
+        >
+          {{screen.texts.buttonText}}
+        </button>
+      </fieldset>
+    </form>
+
+    {{! Social signup section }}
+    {{> shared/social-login-buttons}}
+
+    {{! Footer navigation }}
+    <footer class="p-8 pt-4 border-t border-gray-100">
+      <nav class="text-center">
+        <a href="{{screen.loginLink}}" id="goToLogin" class="text-lg text-indigo-600 hover:text-indigo-500">
+          {{screen.texts.loginActionText}}
+        </a>
+      </nav>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{{! Error Messages - Independent Component }}
+{{#if transaction.errors}}
+<aside class="px-8" role="alert" aria-labelledby="error-heading">
+  {{#each transaction.errors}}
+    <div class="rounded-md bg-red-50 p-4 mb-2">
+      <div class="text-sm text-red-700">{{#if this.longDescription}}{{this.longDescription}}{{else}}{{this.message}}{{/if}}</div>
+    </div>
+  {{/each}}
+</aside>
+{{/if}}

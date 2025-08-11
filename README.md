@@ -92,7 +92,7 @@ This boilerplate includes these core authentication screens:
 
 ### 📂 Project Structure
 
-```
+```text
 ├── LICENSE
 ├── package.json           # Project dependencies and scripts
 ├── postcss.config.js      # PostCSS configuration

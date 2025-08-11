@@ -67,7 +67,7 @@ This boilerplate includes these core authentication screens:
    - Select login-id
    - Select "Advanced mode"
    - Select "Head Tags" and add the following snippet
-    ```
+   ```json
     {
         "tag": "script",
         "attributes": {
@@ -75,7 +75,8 @@ This boilerplate includes these core authentication screens:
           "defer": true
         }
     }
-  ```
+   ```
+
    - Select "Additional Data" and check "Texts" and "Submitted form data"
 
    Then apply the same settings to login-password, signup-id and signup-password

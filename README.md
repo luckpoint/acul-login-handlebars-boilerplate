@@ -36,8 +36,8 @@ This boilerplate includes these core authentication screens:
 
 1. **Clone this repository:**
    ```bash
-   git clone <repository-url>
-   cd acul-login-boilerplate
+   git clone https://github.com/luckpoint/acul-login-handlebars-boilerplate.git
+   cd acul-login-handlebars-boilerplate
    ```
 
 2. **Install dependencies:**

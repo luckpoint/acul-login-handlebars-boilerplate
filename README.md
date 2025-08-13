@@ -74,6 +74,13 @@ This boilerplate includes these core authentication screens:
           "src": "http://127.0.0.1:8080/index.js",
           "defer": true
         }
+    },
+    {
+        "tag": "link",
+        "attributes": {
+          "rel": "stylesheet",
+          "href": "http://127.0.0.1:8080/index.css"
+        }
     }
    ```
 

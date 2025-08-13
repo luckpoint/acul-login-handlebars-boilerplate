@@ -4,15 +4,20 @@ import LoginId from '@auth0/auth0-acul-js/login-id';
 import { renderWithLayout } from '../../renderTemplate';
 import compiledTemplate from './login-id.hbs?compiled';
 
+// --- Add manager and new link element to the top-level variables ---
+let manager: LoginId | null = null;
 let form: HTMLFormElement | null = null;
 let submitListener: ((e: SubmitEvent) => void) | null = null;
 let passkeyButton: HTMLButtonElement | null = null;
 let passkeyClickListener: ((e: Event) => void) | null = null;
 let socialButtons: NodeListOf<HTMLButtonElement> | null = null;
 let socialListeners: Map<HTMLButtonElement, (e: MouseEvent) => void> = new Map();
+// Add forgot password link and listener
+let forgotPasswordLink: HTMLAnchorElement | null = null;
+let forgotPasswordListener: ((e: MouseEvent) => void) | null = null;
 
 export function render(container: HTMLElement): void {
-  const manager = new LoginId();
+  manager = new LoginId(); // Moved manager initialization here
   const { screen, transaction } = manager;
 
   // Get required/optional identifiers and social connections
@@ -59,7 +64,7 @@ export function render(container: HTMLElement): void {
       e.preventDefault();
       const email = (container.querySelector("#loginEmail") as HTMLInputElement)?.value;
       try {
-        manager.login({ username: email });
+        manager!.login({ username: email });
       } catch (error) {
         console.error('Login failed:', error);
         // Re-render to show updated errors
@@ -78,7 +83,7 @@ export function render(container: HTMLElement): void {
       const listener = (e: MouseEvent) => {
         e.preventDefault();
         console.warn('Federated login not supported in current Auth0 ACUL version');
-        manager.federatedLogin({ connection: connectionName });
+        manager!.federatedLogin({ connection: connectionName });
       };
       button.addEventListener('click', listener);
       socialListeners.set(button, listener);
@@ -96,7 +101,7 @@ export function render(container: HTMLElement): void {
     if (passkeyButton) {
       passkeyClickListener = (e: Event) => {
         e.preventDefault();
-        manager.passkeyLogin();
+        manager!.passkeyLogin();
       };
       passkeyButton.addEventListener("click", passkeyClickListener);
     }

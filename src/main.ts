@@ -7,6 +7,11 @@ import * as loginIdScreen from './screens/login-id/login-id';
 import * as loginPasswordScreen from './screens/login-password/login-password';
 import * as signupIdScreen from './screens/signup-id/signup-id';
 import * as signupPasswordScreen from './screens/signup-password/signup-password';
+// --- Add imports for reset password screens ---
+import * as resetPasswordRequestScreen from './screens/reset-password-request';
+import * as resetPasswordEmailScreen from './screens/reset-password-email';
+import * as resetPasswordScreen from './screens/reset-password';
+import * as resetPasswordSuccessScreen from './screens/reset-password-success';
 
 // --- Mapping of screen names to modules ---
 const screenModules = {
@@ -14,6 +19,11 @@ const screenModules = {
   'login-password': loginPasswordScreen,
   'signup-id': signupIdScreen,
   'signup-password': signupPasswordScreen,
+  // --- Add mappings for reset password screens ---
+  'reset-password-request': resetPasswordRequestScreen,
+  'reset-password-email': resetPasswordEmailScreen,
+  'reset-password': resetPasswordScreen,
+  'reset-password-success': resetPasswordSuccessScreen,
 };
 
 function rerenderAuthScreen() {
@@ -33,7 +43,7 @@ function rerenderAuthScreen() {
   const module = screenModules[currentScreenName as keyof typeof screenModules];
 
   // Execute the module's render function
-  if (module) {
+  if (module && typeof module.render === 'function') {
     module.render(appContainer);
   } else {
     // Fallback handling for unsupported screens
@@ -45,3 +55,6 @@ function rerenderAuthScreen() {
 
 // Execute initial rendering
 rerenderAuthScreen();
+
+// Assign to window object to be called by ACUL SDK for screen transitions
+(window as any).rerenderAuthApp = rerenderAuthScreen;

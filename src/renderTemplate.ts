@@ -13,7 +13,7 @@ import socialLoginButtonsTemplateRaw from './shared/social-login-buttons.hbs?raw
 // --- Register all helpers globally in one place ---
 Handlebars.registerPartial('header', headerTemplateRaw);
 Handlebars.registerPartial('footer', footerTemplateRaw);
-Handlebars.registerPartial('passwordField', passwordFieldTemplateRaw);
+Handlebars.registerPartial('shared/password-field', passwordFieldTemplateRaw);
 Handlebars.registerPartial('shared/error-messages', errorMessagesTemplateRaw);
 Handlebars.registerPartial('shared/identifier-field', identifierFieldTemplateRaw);
 Handlebars.registerPartial('shared/input-field', inputFieldTemplateRaw);
